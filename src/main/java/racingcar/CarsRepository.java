@@ -28,13 +28,13 @@ public class CarsRepository {
         }
     }
 
-    public static List<Car> getWinners(){
-        List<Car> winners=new ArrayList<>();
+    public static List<String> getWinnerNames(){
+        List<String> winners=new ArrayList<>();
 
         int maxPosition=getMaxPosition();
         for(Car c:carsRepository){
             if(maxPosition==c.getPosition()) {
-                winners.add(c);
+                winners.add(c.getName());
             }
         }
         return winners;
