@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class GameController {
@@ -35,21 +37,28 @@ public class GameController {
 
     private void playRound(){
         roundCount--;
-        for(int i=0;i<carsRepositorySize;++i){
-            boolean racingOption=getRacingOption();
-            CarsRepository.raceCar(i,racingOption);
-        }
+        CarsRepository.raceCarsBy(getRacingOptions);
     }
 
     private static final int MIN_NUMBER=0;
     private static final int MAX_NUMBER=9;
     private static final int BASE_NUMBER=4;
 
-    private boolean getRacingOption(){
-        int randomNumber=pickNumberInRange(MIN_NUMBER,MAX_NUMBER);
+    private List<Boolean> getRacingOptions(){
+        List<Boolean> options = new ArrayList<>();
 
-        if(randomNumber>=BASE_NUMBER) return true;
-        return false;
+        for(int i=0;i<carsRepositorySize;++i){
+            int randomNumber=pickNumberInRange(MIN_NUMBER,MAX_NUMBER);
+
+            if(randomNumber>=BASE_NUMBER) {
+                options.add(true);
+            }
+            if(randomNumber<BASE_NUMBER) {
+                options.add(false);
+            }
+        }
+
+        return options;
     }
 
     private int pickNumberInRange(int min, int max){
