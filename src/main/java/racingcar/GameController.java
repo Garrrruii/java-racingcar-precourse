@@ -37,7 +37,7 @@ public class GameController {
 
     private void playRound(){
         roundCount--;
-        CarsRepository.raceCarsBy(getRacingOptions);
+        CarsRepository.raceCarsBy(getRacingOptions());
     }
 
     private static final int MIN_NUMBER=0;
