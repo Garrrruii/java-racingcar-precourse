@@ -68,17 +68,17 @@ public class InputErrorTest {
         }
     }
 
-    private void putCarNamesInput(String input){
+    private void putCarNamesInput(String input) {
         in = new ByteArrayInputStream(input.getBytes());
-        out=new ByteArrayOutputStream();
+        out = new ByteArrayOutputStream();
         System.setIn(in);
 
         new IOController().getCarNames();
     }
 
-    private void putRoundCountInput(String input){
+    private void putRoundCountInput(String input) {
         in = new ByteArrayInputStream(input.getBytes());
-        out=new ByteArrayOutputStream();
+        out = new ByteArrayOutputStream();
         System.setIn(in);
 
         new IOController().getRoundCount();
