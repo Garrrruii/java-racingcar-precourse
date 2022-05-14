@@ -8,52 +8,55 @@ public class GameController {
 
     private int roundCount;
     private CarsRepository carsRepository = new CarsRepository();
+    private IOController ioController = new IOController();
     private int carsRepositorySize;
 
     public GameController() {
     }
 
-    public void playGame(){
+    public void playGame() {
         //get input cars name
-        carsRepository.setCars(IOController.getCarNames());
-        carsRepositorySize=carsRepository.getSize();
+        carsRepository.setCars(ioController.getCarNames());
+        carsRepositorySize = carsRepository.getSize();
 
         //get input round count
-        roundCount=IOController.getRoundCount();
+        roundCount = ioController.getRoundCount();
 
         //play round
-        while(keepPlayRound()){
+        ioController.printExecutingMessage();
+        while (keepPlayRound()) {
             playRound();
+            ioController.printRound(carsRepository);
         }
 
         //print Winner
-        IOController.printWinners(carsRepository.getWinners());
+        ioController.printWinners(carsRepository.getWinnerNames());
     }
 
-    private boolean keepPlayRound(){
-        if(roundCount>0) return true;
+    private boolean keepPlayRound() {
+        if (roundCount > 0) return true;
         return false;
     }
 
-    private void playRound(){
+    private void playRound() {
         roundCount--;
         CarsRepository.raceCarsBy(getRacingOptions());
     }
 
-    private static final int MIN_NUMBER=0;
-    private static final int MAX_NUMBER=9;
-    private static final int BASE_NUMBER=4;
+    private static final int MIN_NUMBER = 0;
+    private static final int MAX_NUMBER = 9;
+    private static final int BASE_NUMBER = 4;
 
-    private List<Boolean> getRacingOptions(){
+    private List<Boolean> getRacingOptions() {
         List<Boolean> options = new ArrayList<>();
 
-        for(int i=0;i<carsRepositorySize;++i){
-            int randomNumber=pickNumberInRange(MIN_NUMBER,MAX_NUMBER);
+        for (int i = 0; i < carsRepositorySize; ++i) {
+            int randomNumber = pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
 
-            if(randomNumber>=BASE_NUMBER) {
+            if (randomNumber >= BASE_NUMBER) {
                 options.add(true);
             }
-            if(randomNumber<BASE_NUMBER) {
+            if (randomNumber < BASE_NUMBER) {
                 options.add(false);
             }
         }
@@ -61,7 +64,7 @@ public class GameController {
         return options;
     }
 
-    private int pickNumberInRange(int min, int max){
+    private int pickNumberInRange(int min, int max) {
         if (min > max) {
             int tmp = min;
             min = max;
