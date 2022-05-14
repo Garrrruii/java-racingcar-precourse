@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +24,12 @@ public class CarsRepository {
         for(Car c:carsRepository){
             c.race(racingOptions.get(idx));
             idx++;
+        }
+    }
+
+    public void printRound(){
+        for(Car c:carsRepository) {
+            c.printCar();
         }
     }
 
