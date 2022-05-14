@@ -65,6 +65,9 @@ public class IOController {
         } catch(IOException e){
             System.out.println(ETC_IO_ERROR);
             occurInputError();
+        } catch(NumberFormatException e){
+            System.out.println(ROUND_COUNT_RANGE_ERROR);
+            occurInputError();
         }
 
         if(roundCount<=0) {
@@ -75,15 +78,17 @@ public class IOController {
     }
 
     public void printExecutingMessage(){
+        System.out.println();
         System.out.println("실행 결과");
     }
 
     public void printRound(CarsRepository carsRepository){
         carsRepository.printRound();
+        System.out.println();
     }
 
     public void printWinners(List<String> winnerNames){
-        System.out.println(String.join(", ",winnerNames));
+        System.out.println("최종 우승자 : "+String.join(", ",winnerNames));
     }
 
     private void occurInputError(){
